@@ -1,0 +1,220 @@
+<app-sidebar></app-sidebar>
+<app-navbar></app-navbar>
+
+<body class="bg-theme bg-theme5">
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 100px">
+            <div class="col-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-shopping-basket" aria-hidden="true" style="padding-right: 10px"></i> Product List
+                        <div class="card-action">
+                            <div class="dropdown">
+                                    <img src="assets/images/plus-circle-fill.svg" style="width: 30px;height: 30px" data-toggle="modal" data-target="#ModalAddProduct" />
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush table-borderless">
+                            <thead>
+                                <tr>
+                                    <th>Photo</th>
+                                    <th>name</th>
+                                    <th>shopname</th>
+                                    <th>category</th>
+                                    <th>price</th>
+                                    <th>quantite</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let product of products">
+                                    <td class="text-center"><img class="img-fluid img-thumbnail" width="80px" src="http://localhost:3000{{product.photo}}" /></td>
+
+                                    <td>{{product.name}} </td>
+                                    <td>{{product.shopname}}</td>
+                                    <td>{{product.category}}</td>
+                                    <td>{{product.price}} </td>
+                                    <td>{{product.quantite}}</td>
+                                    <td>
+
+                                        <i (click)="getUpdateProduct(product)" class="fa fa-pencil-square-o" style="font-size: 20px;" data-toggle="modal" data-target="#ModalEditProduct" style="padding-right: 30px;padding-left: 30px;color: #3a87ad "></i>
+                                        <i (click)="deleteProduct(product)" class="fa fa-trash" style="font-size: 20px;color: red"></i>
+                                    </td>
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Row-->
+
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="ModalAddProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="  background-image: url(assets/images/bg-themes/5.png);">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    <i class="fa fa-shopping-basket " style="padding-right: 20px"></i> Add Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form" (submit)="onSubmit()">
+
+                    <div class="form-group">
+                        <label class="col-form-label">Product Name:</label>
+                        <input formControlName="name" type="text" placeholder="Product Name..." class="form-control" />
+                    </div>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label class="col-form-label">Price:</label>
+                                <input formControlName="price" type="number" placeholder="Price..." class="form-control" />
+                            </div>
+                        </td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <td>
+                            <div class="form-group">
+                                <label class="col-form-label">Quantity:</label>
+                                <input formControlName="quantite" type="number" placeholder="Quantity..." class="form-control" />
+                            </div>
+                        </td>
+                    </tr>
+                    <div class="form-group">
+                        <label>Shops</label>
+                        <select class="form-control" (change)="selectChangeHandler($event)">
+              <option  *ngFor="let shop of shops" value="{{shop._id}}">{{shop.name}}</option>
+            </select >
+          </div>
+          <div class="form-group">
+            <label >Category</label>
+            <select class="form-control" (change)="selectChangeHandlerCat($event)" >
+              <option  value="foods">Foods</option>
+              <option  value="drinks">Drinks</option>
+              <option  value="cake">Cake</option>
+              <option  value="iceCream">Ice-Cream</option>
+              <option  value="fruits">Fruits</option>
+              <option  value="vegetables">Vegetables</option>
+              <option  value="bread">Bread</option>
+
+            </select >
+          </div>
+          <div class="form-group">
+            <label  class="col-form-label">Choose Image for your product:</label>
+            <input (change)="selectImage($event)" type="file" class="form-control-file" />
+          </div>
+          <div *ngIf="imageData">
+            <img [src]="imageData" [alt]="form.value.name" width="100" height="100"/>
+          </div>
+          <div><p>
+            {{selectedDay}}
+          </p></div>
+          <div><p>
+            {{product.shopId}}
+          </p></div>
+
+          <div>
+            <div class="modal-footer">
+              <button type="submit"  class="btn btn-primary" style="background-color: #A5678B;border-color: white" >Save</button>
+
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"  style="background-color: #703B67;color: #ffffff">Close</button>
+
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="ModalEditProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="  background-image: url(assets/images/bg-themes/5.png);">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          <i class="fa fa-shopping-basket " style="padding-right: 20px"></i>
+          Edit Product</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (submit)="updateprod()">
+
+        <tr>
+          <td>
+            <div *ngIf="imageDataUpdate">
+              <img [src]="imageDataUpdate"  width="200" height="250"/>
+            </div>
+          </td>
+          <td>
+            <div class="form-group " >
+              <label  class="col-form-label">Product Name:</label>
+              <input formControlName="name" type="text" placeholder="Product Name..." class="form-control"  value="{{product.name}}" />
+            </div>
+          </td>
+        </tr>
+          <tr >
+            <td>
+              <div class="form-group">
+                <label  class="col-form-label">Price:</label>
+                <input formControlName="price" type="number" placeholder="Price..." class="form-control" value="{{product.price}}" />
+              </div>
+            </td>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <td>
+              <div class="form-group">
+                <label  class="col-form-label">Quantity:</label>
+                <input formControlName="quantite" type="number" placeholder="Quantity..." class="form-control" value="{{product.quantite}}"/>
+              </div>
+            </td>
+          </tr>
+
+          <div class="form-group">
+            <label  class="col-form-label">Choose Image for your product:</label>
+            <input (change)="selectImageUpdate($event)" type="file" class="form-control-file" />
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit"  class="btn btn-primary" style="background-color: #A5678B;border-color: white" >Save</button>
+
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"  style="background-color: #703B67;color: #ffffff">Close</button>
+
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+
+<script>
+  $('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    modal.find('.modal-title').text('New message to ' + recipient)
+    modal.find('.modal-body input').val(recipient)
+  })
+</script>

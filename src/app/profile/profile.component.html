@@ -1,0 +1,219 @@
+<app-sidebar></app-sidebar>
+<app-navbar></app-navbar>
+<div class="content-wrapper">
+  <div class="container-fluid">
+
+    <div class="row mt-3">
+      <div class="col-lg-4">
+        <div class="card profile-card-2">
+          <div class="card-img-block">
+            <img class="img-fluid" src="https://cap.img.pmdstatic.net/fit/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2Fcap.2F2018.2F10.2F04.2F4330942d-8649-46aa-9802-edb7fc4fdf94.2Ejpeg/750x375/background-color/ffffff/quality/70/casino-ouvre-un-nouveau-concept-de-magasin-pres-des-champs-elysees-1309563.jpg" alt="Card image cap">
+          </div>
+          <div class="card-body pt-5">
+            <img src="https://cache.cosmopolitan.fr/data/photo/w1000_c17/3y/femme_sourire.jpg" alt="profile-image" class="profile">
+            <h5 class="card-title">{{traider.firstname}} {{traider.lastname}}</h5>
+            <p class="card-text"></p>
+            <h6 class="card-title"><i class="fa fa-phone" aria-hidden="true"></i>Phone:</h6>
+            <p style="margin-left: 20px">+216{{traider.phone}}</p>
+            <h6 class="card-title"><i class="fa fa-envelope" aria-hidden="true"></i>
+              Email:</h6>
+            <p style="margin-left: 20px">{{traider.email}}</p>
+
+            <div class="icon-block">
+              <a href="javascript:void();"><i class="fa fa-facebook bg-facebook text-white"></i></a>
+              <a href="javascript:void();"> <i class="fa fa-twitter bg-twitter text-white"></i></a>
+              <a href="javascript:void();"> <i class="fa fa-google-plus bg-google-plus text-white"></i></a>
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-body">
+            <ul class="nav nav-tabs nav-tabs-primary top-icon nav-justified">
+
+
+              <li class="nav-item">
+                <a href="javascript:void();" data-target="#edit" data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Edit</span></a>
+              </li>
+            </ul>
+            <div class="tab-content p-3">
+              <div class="tab-pane active" id="profile">
+                <form [formGroup]="form" (submit)="updatetrader()">
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                    <div class="col-lg-9">
+                      <input class="form-control" formControlName="lastname" type="text" value="{{traider.lastname}}"   >
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                    <div class="col-lg-9">
+                      <input class="form-control" type="text" formControlName="firstname" value="{{traider.firstname}}" >
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                    <div class="col-lg-9">
+                      <input class="form-control" type="email" formControlName="email" value="{{traider.email}}">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Phone</label>
+                    <div class="col-lg-9">
+                      <input class="form-control" type="text" formControlName="phone" value="{{traider.phone}}" >
+                    </div>
+                  </div>
+
+
+
+                  <label href="#feeds"  data-toggle="collapse" style="margin-left: 170px">Update Password ? </label>
+                  <div id="feeds" class="collapse">
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Old Password</label>
+                      <div class="col-lg-9">
+                        <input class="form-control" type="password" formControlName="oldPass" placeholder="Enter your Old password...">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">New Password</label>
+                      <div class="col-lg-9">
+                        <input class="form-control" type="password" formControlName="newPass" placeholder="Enter your new password...">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Confirm Password</label>
+                      <div class="col-lg-9">
+                        <input class="form-control" type="password"  formControlName="cPass" placeholder="Repeat your password...">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                    <div class="col-lg-9">
+                      <input type="reset" class="btn btn-secondary" value="Cancel">
+                      <input type="submit" class="btn btn-primary" value="Save " >
+                    </div>
+                  </div>
+                </form>
+                <!--/row-->
+              </div>
+              <div class="tab-pane" id="messages">
+                <div class="alert alert-info alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <div class="alert-icon">
+                    <i class="icon-info"></i>
+                  </div>
+                  <div class="alert-message">
+                    <span><strong>Info!</strong> Lorem Ipsum is simply dummy text.</span>
+                  </div>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-hover table-striped">
+                    <tbody>
+                    <tr>
+                      <td>
+                        <span class="float-right font-weight-bold">3 hrs ago</span> Here is your a link to the latest summary report from the..
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="float-right font-weight-bold">Yesterday</span> There has been a request on your account since that was..
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="float-right font-weight-bold">9/10</span> Porttitor vitae ultrices quis, dapibus id dolor. Morbi venenatis lacinia rhoncus.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="float-right font-weight-bold">9/4</span> Vestibulum tincidunt ullamcorper eros eget luctus.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="float-right font-weight-bold">9/4</span> Maxamillion ais the fix for tibulum tincidunt ullamcorper eros.
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="tab-pane" id="edit">
+                <form [formGroup]="form" (submit)="updatetrader()">
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                    <div class="col-lg-9">
+                      <input class="form-control" formControlName="lastname" type="text" value="{{traider.lastname}}"   >
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                    <div class="col-lg-9">
+                      <input class="form-control" type="text" formControlName="firstname" value="{{traider.firstname}}" >
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                    <div class="col-lg-9">
+                      <input class="form-control" type="email" formControlName="email" value="{{traider.email}}">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Phone</label>
+                    <div class="col-lg-9">
+                      <input class="form-control" type="text" formControlName="phone" value="{{traider.phone}}" >
+                    </div>
+                  </div>
+
+
+
+                  <label href="#feeds"  data-toggle="collapse" style="margin-left: 170px">Update Password ? </label>
+                  <div id="feeds" class="collapse">
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Old Password</label>
+                      <div class="col-lg-9">
+                        <input class="form-control" type="password" formControlName="oldPass" placeholder="Enter your Old password...">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">New Password</label>
+                    <div class="col-lg-9">
+                      <input class="form-control" type="password" formControlName="newPass" placeholder="Enter your new password...">
+                    </div>
+                  </div>
+                    <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Confirm Password</label>
+                    <div class="col-lg-9">
+                      <input class="form-control" type="password"  formControlName="cPass" placeholder="Repeat your password...">
+                    </div>
+                  </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                    <div class="col-lg-9">
+                      <input type="reset" class="btn btn-secondary" value="Cancel">
+                      <input type="submit" class="btn btn-primary" value="Save " >
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

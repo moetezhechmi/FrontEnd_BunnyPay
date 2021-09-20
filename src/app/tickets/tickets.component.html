@@ -1,0 +1,101 @@
+<app-navbar-admin></app-navbar-admin>
+<app-sidebar-admin></app-sidebar-admin>
+<body class="bg-theme bg-theme5">
+
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <div class="row" style="margin-top: 100px">
+      <div class="col-12 col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <i class="fa fa-credit-card " style="padding-right: 10px"></i>
+          Tickets
+            <div class="card-action">
+              <div class="dropdown">
+
+                <img src="assets/images/plus-circle-fill.svg" style="width: 30px;height: 30px" data-toggle="modal" data-target="#ModalAddShop"/>
+
+
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush table-borderless">
+              <thead>
+              <tr >
+                <th>Code</th>
+                <th>Amount</th>
+                <th>Used or Not</th>
+                <th>Convert to PDF</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let ticket of tickets " >
+
+                <td >
+                   {{ticket.code}}
+                </td>
+
+                <td >
+                  {{ticket.montant}}DT
+
+                </td>
+
+                <td>
+                 <p class="btn btn-outline-success"> {{ticket.used}}</p>
+                </td>
+                <td>
+                <button  (click)="generatePdf()" type="button" class="btn btn-outline-primary" style="color: white;border-color: white;margin-right: 20px">PDF</button>
+                </td>
+
+              </tr>
+
+
+
+              </tbody></table>
+          </div>
+        </div>
+      </div>
+    </div><!--End Row-->
+
+  </div>
+</div>
+
+
+<!--modal add-->
+
+<div class="modal fade" id="ModalAddShop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog" role="document" >
+    <div class="modal-content" style="  background-image: url(assets/images/bg-themes/5.png);
+">
+      <div class="modal-header">
+        <h5  class="modal-title" id="exampleModalLabel" >            <i class="fa fa-credit-card " style="padding-right: 20px"></i>
+          Add Ticket</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="name" class="col-form-label">Code</label>
+            <input type="text" class="form-control" id="name" required
+                   name="name"  [(ngModel)]="ticket.code">
+          </div>
+
+          <div class="form-group">
+            <label for="name" class="col-form-label">Amount</label>
+            <input type="number" class="form-control" id="name" required
+                   name="name"  [(ngModel)]="ticket.montant">
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"  style="background-color: #703B67;color: #ffffff">Close</button>
+        <button type="button" data-dismiss="modal" class="btn btn-primary"  (click)="createTicket()"  style="background-color: #A5678B;border-color: white">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

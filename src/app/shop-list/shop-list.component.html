@@ -1,0 +1,100 @@
+<app-sidebar></app-sidebar>
+<app-navbar></app-navbar>
+
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 100px">
+            <div class="col-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-shopping-cart " style="padding-right: 10px"></i> Shop List
+                        <div class="card-action">
+                            <div class="dropdown">
+                                <img src="assets/images/plus-circle-fill.svg" style="width: 30px;height: 30px" data-toggle="modal" data-target="#ModalAddShop" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush table-borderless">
+                            <thead>
+                                <tr>
+                                    <th>name</th>
+                                    <th>description</th>
+                                    <th>town</th>
+                                    <th>street</th>
+
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let shop of shops ">
+
+                                    <td>
+                                        {{shop.name}}
+                                    </td>
+                                    <td>
+                                        {{shop.description}}
+                                    </td>
+                                    <td>
+                                        {{shop.town}}
+                                    </td>
+                                    <td>
+                                        {{shop.street}}
+                                    </td>
+                                    <td>
+                                        <img src="assets/images/trash-fill.svg" style="padding-left: 50px" (click)="deleteShop(shop)">
+                                    </td>
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Row-->
+
+    </div>
+</div>
+
+
+<!--modal add-->
+
+<div class="modal fade" id="ModalAddShop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="  background-image: url(assets/images/bg-themes/5.png);
+">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-shopping-cart " style="padding-right: 20px"></i> Add Shop</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">name:</label>
+                        <input type="text" class="form-control" id="name" required name="name" [(ngModel)]="shop.name">
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">description:</label>
+                        <input type="text" class="form-control" id="description" required name="description" [(ngModel)]="shop.description">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+                    </div>
+                    <agm-map [latitude]="lat" [longitude]="lng">
+                        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                    </agm-map>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #703B67;color: #ffffff">Close</button>
+                <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="saveShop()" style="background-color: #A5678B;border-color: white">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

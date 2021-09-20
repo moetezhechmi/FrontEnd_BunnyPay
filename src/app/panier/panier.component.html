@@ -1,0 +1,59 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<br><br><br><br><br><br><br><br>
+
+<div class="container mb-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col"> </th>
+            <th scope="col">Product</th>
+
+            <th scope="col" >Quantity</th>
+            <th scope="col" class="text-right">Price</th>
+            <th> </th>
+          </tr>
+          </thead>
+          <tbody >
+          <tr *ngFor="let p of products"  >
+            <td><img src="http://localhost:3000{{p.photo}}" width="80px"  /> </td>
+            <td >{{p.name}}</td>
+
+            <td ><input (change)="selectChangeHandler($event)" (click)="calclulPrice(p)" class="form-control-panier" type="number" value="{{p.q}}" /></td>
+            <td class="text-right" >{{p.pricepanier}} </td>
+            <td  class="text-right"><button class="btn btn-sm btn-danger" (click)="delete(p)" ><i class="fa fa-trash"  ></i> </button> </td>
+          </tr>
+
+          <tr>
+
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><strong>Total</strong></td>
+            <td class="text-right"><strong>{{totalfinal}} Millimes</strong></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col mb-2">
+      <div class="row">
+
+        <div class="col-sm-12 col-md-6 text-right" style="margin-left: 300px">
+          <button class="btn btn-lg btn-block btn-success text-uppercase" (click)="getchildbyt()">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+

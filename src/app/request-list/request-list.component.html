@@ -1,0 +1,115 @@
+<app-sidebar-admin></app-sidebar-admin>
+<app-navbar-admin></app-navbar-admin>
+
+<body class="bg-theme bg-theme5">
+
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="row" style="margin-top: 100px">
+                <div class="col-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+
+                            <i class="fa fa-list-ul" aria-hidden="true" style="margin-right: 10px"></i> Requests List
+                            <div class="card-action">
+                                <div class="dropdown">
+                                    <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+                                        <i class="icon-options"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="javascript:void();">Action</a>
+                                        <a class="dropdown-item" href="javascript:void();">Another action</a>
+                                        <a class="dropdown-item" href="javascript:void();">Something else here</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th>Firstname</th>
+                                        <th>lastname</th>
+                                        <th>Age</th>
+                                        <th>sexe</th>
+
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let child of childs ">
+                                        <td>{{child.firstname}}</td>
+                                        <td>{{child.lastname}}</td>
+                                        <td>{{child.age}}</td>
+                                        <td>{{child.sexe}}</td>
+
+                                        <td>
+
+<img  (click)="AdhererChild(child)"  width="40px" style="margin-right: 29px" src="{{child.status}}"/>
+
+
+                                          <button (click)=" acceptchild(child)" type="button" class="btn btn-outline-success" style="margin-right: 29px">Accepter</button>
+                                            <button (click)="refuseChild(child)" type="button" class="btn btn-outline-danger">Refuser</button>
+                                        </td>
+
+
+                                    </tr>
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Row-->
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalAddShop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="  background-image: url(assets/images/bg-themes/5.png);
+">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"> <i class="fa fa-child " style="padding-right: 20px"></i> Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <tr  >
+                            <td>
+                                <div>
+                                    <img src="{{child.photo}}" width="100" height="100" />
+                                </div>
+                            </td>
+                            <td style="padding-left: 20px">
+                                <div class="form-group ">
+                                    <label class="col-form-label">{{child.firstname}} {{child.lastname}}</label>
+                                </div>
+                            </td>
+
+                        </tr>
+
+
+                      <div style="margin-left: 160px">
+                        <img src="assets/images/scanTag.gif" width="150" height="150" />
+                      </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #703B67;color: #ffffff">Close</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-primary" style="background-color: #A5678B;border-color: white">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
